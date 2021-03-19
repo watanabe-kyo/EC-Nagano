@@ -12,10 +12,14 @@ Rails.application.routes.draw do
 
   namespace :admin do
   	root to: "homes#top"
+    resources :customers, only: [:index, :show, :edit, :update]
   end
 
   scope module: :public do
   	root to: "homes#top"
+    resource :customer, only: [:show, :edit, :update]
+    get 'customers/unsubscribe' => "customers#unsubscribe"
+    patch 'customers/withdraw' => "customers#withdraw"
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

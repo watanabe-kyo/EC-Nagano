@@ -1,0 +1,13 @@
+<%= render 'public/header' %>
+<div class="container">
+	<%= current_customer.last_name %> <%= current_customer.first_name %><br>
+	<%= current_customer.last_name_kana %> <%= current_customer.first_name_kana %><br>
+	<%= current_customer.email %><br>
+	<%= current_customer.postal_code %><br>
+	<%= current_customer.address %><br>
+	<%= current_customer.telephone_number %><br>
+	<%= link_to "編集する", edit_customer_path %><br>
+	<%= link_to "パスワード変更" %><br>
+	<%= link_to "配送先一覧を見る" %><br>
+	<%= link_to "注文履歴を見る" %><br>
+</div>
