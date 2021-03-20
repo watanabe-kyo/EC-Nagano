@@ -1,0 +1,26 @@
+<%= render 'admin/header' %>
+<div class="container">
+	<h2>会員一覧</h2>
+	<table class="table">
+		<thead>
+			<th>会員ID</th>
+			<th>氏名</th>
+			<th>メールアドレス</th>
+			<th>ステータス</th>
+		</thead>
+		<% @customers.each do |customer| %>
+			<tbody>
+				<td><%= customer.id %></td>
+				<td><%= customer.last_name %><%= customer.first_name %></td>
+				<td><%= customer.email %></td>
+				<td>
+					<% if customer.is_active == true %>
+						<p>有効</p>
+					<% else %>
+						<p>退会済</p>
+					<% end %>
+				</td>
+			</tbody>
+		<% end %>
+	</table>
+</div>
