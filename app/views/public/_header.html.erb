@@ -1,16 +1,21 @@
-<% if customer_signed_in? %>
 	<header class="navbar navbar-fixed-top">
 		<div class="container">
 			<%= link_to "LOGO", root_path %>
 			<nav>
 				<ul class="nav navbar-nav">
-					<li>ようこそ、xxxさん</li>
-					<li><%= link_to "マイページ", customer_path %></li>
-					<li><%= link_to "商品一覧" %></li>
-					<li><%= link_to "カート" %></li>
-					<li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
+					<% if customer_signed_in? %>
+						<li>ようこそ、xxxさん</li>
+						<li><%= link_to "マイページ", customer_path %></li>
+						<li><%= link_to "商品一覧", items_path %></li>
+						<li><%= link_to "カート" %></li>
+						<li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
+				    <% else %>
+				    	<li><%= link_to "About" %></li>
+				    	<li><%= link_to "商品一覧", items_path %></li>
+				    	<li><%= link_to "新規登録", new_customer_registration_path %></li>
+				    	<li><%= link_to "ログイン", new_customer_session_path %></li>
+					<% end %>
 				</ul>
 			</nav>
 		</div>
 	</header>
-<% end %>

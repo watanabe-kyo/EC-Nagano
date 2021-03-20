@@ -1,0 +1,24 @@
+<%= render 'public/header' %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-2 card mr-5p">
+			<p>ジャンル検索</p>
+			<p>~~~</p>
+			<p>~~~</p>
+			<p>~~~</p>
+			<p>~~~</p>
+		</div>
+		<div class="col-md-9">
+			<div class="row">
+			<% @items.each do |item| %>
+				<div class="col-md-2 card mr-5p">
+				<%= attachment_image_tag item, :image, class:"item-image" %>
+				<%= item.name %><br>
+				￥<%= item.price %>
+				</div>
+			<% end %>
+			</div>
+		</div>
+	</div>
+</div>

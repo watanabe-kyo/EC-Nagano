@@ -1,0 +1,30 @@
+<%= render 'admin/header' %>
+<div class="container">
+	<h2>商品一覧</h2>
+	<%= link_to "+", new_admin_item_path, class: "btn" %>
+	<table class="table">
+		<thead>
+			<th>商品ID</th>
+			<th>商品名</th>
+			<th>税抜価格</th>
+			<th>ジャンル</th>
+			<th>ステータス</th>
+		</thead>
+		<% @items.each do |item| %>
+			<tbody>
+				<td><%= item.id %></td>
+				<td><%= item.name %></td>
+				<td><%= item.price %></td>
+				<% genre = Genre.find(item.genre_id) %>
+				<td><%= genre.name %></td>
+				<td>
+					<% if genre.is_active == true %>
+						<p>有効</p>
+					<% else %>
+						<p>無効</p>
+					<% end %>
+				</td>
+			</tbody>
+		<% end %>
+	</table>
+</div>

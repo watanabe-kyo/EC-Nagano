@@ -1,0 +1,36 @@
+<%= render 'admin/header' %>
+<div class="container">
+<h2>ジャンル一覧・追加</h2>
+
+<%= form_with model: @genre, url: admin_genres_path, local: true do |f| %>
+	<%= f.label :name, "ジャンル" %>
+	<%= f.text_field :name %>
+	<%= f.label :is_active, "有効" %>
+	<%= f.radio_button :is_active, :true %>
+	<%= f.label :is_active, "無効" %>
+	<%= f.radio_button :is_active, :false %>
+	<%= f.submit "追加" %>
+<% end %>
+
+<table class="table">
+	<thead>
+		<th>ジャンル</th>
+		<th>状態</th>
+		<th></th>
+	</thead>
+
+<% @genres.each do |genre| %>
+	<tbody>
+		<td><%= genre.name %></td>
+		<td>
+			<% if genre.is_active == true %>
+				<p>有効</p>
+			<% else %>
+				<p>無効</p>
+			<% end %>
+		</td>
+		<td><%= link_to "編集する", edit_admin_genre_path(genre.id) %></td>
+	</tbody>
+<% end %>
+</table>
+</div>
