@@ -1,0 +1,25 @@
+<%= render 'public/header' %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-2 card mr-5p">
+			<p>ジャンル検索</p>
+			<p>~~~</p>
+			<p>~~~</p>
+			<p>~~~</p>
+			<p>~~~</p>
+		</div>
+
+		<div class="col-md-3">
+			<%= attachment_image_tag @item, :image, class:"item-image" %>
+		</div>
+		<div class="col-md-5 text-break">
+			<h2><b><%= @item.name %></b></h2>
+			<%= @item.introduction %>
+			<br>
+			<h3>￥<%= @item.price %></h3>（税込）
+			<%= form_with model:@cartitem, url:cart_items_path, local: true do |f| %>
+				<%= f.select :amount, (1..15) %>
+				<%= f.hidden_field :item_id, :value => @item.id %>
+				<%= f.submit "カートに入れる" %>
+			<% end %>
+		</div>
