@@ -1,7 +1,7 @@
 <%= render 'public/header' %>
 <div class="container">
 	<div class="row">
-		<div class="col-md-2 card mr-5p">
+		<div class="col-md-2 card mr-3v">
 			<p>ジャンル検索</p>
 			<p>~~~</p>
 			<p>~~~</p>
@@ -16,7 +16,7 @@
 			<h2><b><%= @item.name %></b></h2>
 			<%= @item.introduction %>
 			<br>
-			<h3>￥<%= @item.price %></h3>（税込）
+			<h3>￥<%= @item.price.to_s(:delimited) %></h3>（税込）
 			<%= form_with model:@cartitem, url:cart_items_path, local: true do |f| %>
 				<%= f.select :amount, (1..15) %>
 				<%= f.hidden_field :item_id, :value => @item.id %>

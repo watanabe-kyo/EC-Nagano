@@ -1,0 +1,63 @@
+<%= render 'public/header' %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 mr-3v">
+			<p><b>注文情報</b></p>
+			<table class="table table-bordered">
+				<tr>
+					<td>注文日</td>
+					<td><%= @order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+				</tr>
+				<tr>
+					<td>配送先</td>
+					<td>
+						〒<%= @order.postal_code %><br>
+						<%= @order.address %><br>
+						<%= @order.name %><br>
+					</td>
+				</tr>
+				<tr>
+					<td>ステータス</td>
+					<td><%= @order.status %></td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-md-4"><br><br><br>
+			<table class="table table-bordered">
+				<tr>
+					<td>商品合計</td>
+					<td><%= ((@order.total_payment.to_i) - (@order.shipping_cost.to_i)).to_s(:delimited) %>円</td>
+				</tr>
+				<tr>
+					<td>配送料</td>
+					<td><%= @order.shipping_cost.to_s(:delimited) %>円</td>
+				</tr>
+				<tr>
+					<td><b>ご請求額</b></td>
+					<td><%= @order.total_payment.to_s(:delimited) %>円</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<p><b>注文内容</b></p>
+		<table class="table table-bordered">
+			<thead>
+				<th>商品</th>
+				<th>単価（税込）</th>
+				<th>個数</th>
+				<th>小計</th>
+			</thead>
+			<tbody>
+				<% @order.order_details.each do |orderdetail| %>
+					<tr>
+						<td><%= orderdetail.item.name %></td>
+						<td><%= orderdetail.price.to_s(:delimited) %>円</td>
+						<td><%= orderdetail.amount.to_s(:delimited) %>円</td>
+						<td><%= (orderdetail.price * orderdetail.amount).to_s(:delimited) %>円</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

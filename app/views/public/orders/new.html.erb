@@ -1,0 +1,49 @@
+<%= render 'public/header' %>
+<div class="container">
+	<%= flash[:error] %>
+	<h2>注文情報入力</h2>
+	<%= form_with model:@order, url: orders_confirm_path, local: true do |f| %>
+		<p><b>支払方法</b></p>
+		<div class="container">
+			<%= f.radio_button :payment_method, :"クレジットカード", value: :"0" %>
+			<%= f.label :payment_method, "クレジットカード" %><br>
+			<%= f.radio_button :payment_method, :"現金支払", value: :"1" %>
+			<%= f.label :payment_method, "現金支払" %>
+		</div>
+		<p><b>お届け先</b></p>
+		<div class="container">
+			<%= f.radio_button :address_option, :"0" %>
+			<%= f.label :address_option, "ご自身の住所" %><br>
+			<div class="container">
+				<%= current_customer.postal_code %>, <%= current_customer.address %>, <%= current_customer.last_name %> <%= current_customer.first_name %>
+			</div>
+
+			<%= f.radio_button :address_option, :"1" %>
+			<%= f.label :address_option, "登録済住所から選択" %><br>
+			<div class="container">
+				<%= f.collection_select(:jusyo, @addresses, :id, :addresses) %><br>
+			</div>
+			<%= f.radio_button :address_option, :"2" %>
+			<%= f.label :address_option, "新しいお届け先" %><br>
+			<div class="container">
+				<table>
+					<tr>
+						<td><%= f.label :postal_code, "郵便番号（ハイフンなし）" %></td>
+						<td><%= f.number_field :postal_code %></td>
+					</tr>
+					<tr>
+						<td><%= f.label :address, "住所" %></td>
+						<td><%= f.text_field :address %><br></td>
+					</tr>
+					<tr>
+						<td><%= f.label :name, "宛名" %></td>
+						<td><%= f.text_field :name %><br></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+		<br><br><br><br><br><br><br><br>
+
+	<% end %>

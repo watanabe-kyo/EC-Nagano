@@ -1,2 +1,41 @@
 <%= render 'public/header' %>
-<top>
+<div class="container">
+	<div class="row">
+		<div class="col-md-2 card mr-3v">
+			<p>ジャンル検索</p>
+			<p>~~~</p>
+			<p>~~~</p>
+			<p>~~~</p>
+			<p>~~~</p>
+		</div>
+
+		<div class="col-md-8 mx-auto mr-3v">
+			<div class="top-image pd-15p">
+				<div class = "bg-light mx-auto w-60p pd-5p">
+					<span>ようこそ、NaganoCakeへ！</span><br>
+					<span>このサイトは、ケーキ販売のECサイトになります。</span><br>
+					<span>会員でない方も商品の閲覧はできますが、</span><br>
+					<span>購入には会員登録が必要です</span>
+				</div>
+			</div>
+			<h2>オススメ商品</h2>
+			<div class="row">
+				<% @items.each do |item| %>
+					<%= link_to item_path(item), class: "col-md-2.5 card mr-3v text-dark" do %>
+						<%= attachment_image_tag item, :image, class: "item-images" %>
+						<%= item.name %><br>
+						￥<%= item.price.to_s(:delimited) %>
+					<% end %>
+				<% end %>
+			</div>
+			<div class="row">
+				<div class="col-md-8"></div>
+				<div class="col-md-2">
+					<%= link_to "もっと見る >", items_path, class: "text-dark" %>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br><br><br>

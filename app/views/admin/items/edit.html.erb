@@ -1,0 +1,37 @@
+<%= render 'admin/header' %>
+<div class="container">
+	<h2>商品編集</h2>
+	<%= form_with model:@item, url: admin_item_path(@item), local: true do |f| %>
+	<div class="row">
+		<div class="col-md-3">
+			<%= f.attachment_field :image %>
+		</div>
+
+		<div class="col-md-7">
+			<table class="table table-borderless">
+				<tr>
+					<td>商品名</td> <td><%= f.text_field :name %></td>
+				</tr>
+				<tr>
+					<td>商品説明</td> <td><%= f.text_area :introduction %></td>
+				</tr>
+				<tr>
+					<td>ジャンル</td> <td><%= f.collection_select :genre_id, Genre.all, :id, :name %></td>
+				</tr>
+				<tr>
+					<td>税抜価格</td>  <td><%= f.number_field :price %></td>
+				</tr>
+				<tr>
+					<td>販売ステータス</td>  <td><%= f.select :is_active, [['販売中', 0], ['売切れ', 1]] %></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10"></div>
+		<div class="col-md-2">
+			<%= f.submit "変更を保存", class: "btn btn-primary" %>
+		</div>
+	</div>
+	<% end %>
+</div>

@@ -1,0 +1,51 @@
+<%= render 'public/header' %>
+<div class="container">
+	<h2>注文情報確認</h2>
+	<%= form_with model:@order, url: orders_path, local: true do |f| %>
+		<table class="table table-bordered">
+			<thead>
+				<th>商品名</th>
+				<th>単価（税込）</th>
+				<th>数量</th>
+				<th>小計</th>
+			</thead>
+			<% @cartitems.each do |cartitem| %>
+				<tbody>
+					<td>
+						<%= attachment_image_tag cartitem.item, :image, class:"item-images" %>
+						<%= cartitem.item.name %>
+					</td>
+					<td><%= ((cartitem.item.price * 1.1).ceil).to_s(:delimited) %>円</td>
+					<td><%= cartitem.amount %></td>
+					<td><%= (((cartitem.item.price * 1.1) * cartitem.amount).ceil).to_s(:delimited) %>円</td>
+				</tbody>
+			<% end %>
+		</table>
+
+		<table class="table table-bordered">
+			<tr>
+				<td>送料</td>
+				<td><%= @order.shipping_cost.to_s(:delimited) %>円</td>
+			</tr>
+			<tr>
+				<td>商品合計</td>
+				<td><%= (@order.total_payment.to_i - @order.shipping_cost.to_i).to_s(:delimited) %>円</td>
+			</tr>
+			<tr>
+				<td>請求金額</td>
+				<td><%= @order.total_payment.to_s(:delimited) %>円</td>
+			</tr>
+		</table>
+
+		<p><b>支払方法</b></p> <%= @order.payment_method %>
+		<p><b>お届け先</b></p> <%= @order.postal_code %>, <%= @order.address %>, <%= @order.name %>
+
+		<!-- hiddenでcreateに送る -->
+		<%= f.hidden_field :postal_code, :value => @order.postal_code %>
+		<%= f.hidden_field :address, :value => @order.address %>
+		<%= f.hidden_field :name, :value => @order.name %>
+		<%= f.hidden_field :total_payment, :value => @order.total_payment %>
+		<%= f.hidden_field :shipping_cost, :value => @order.shipping_cost %>
+		<!-- -->
+		<%= f.submit "注文を確定する", class: "btn btn-success" %>
+	<% end %><br><br>
