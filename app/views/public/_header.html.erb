@@ -1,19 +1,21 @@
 	<header class="navbar navbar-fixed-top">
 		<div class="container">
-			<%= link_to "LOGO", root_path %>
+			<%= link_to root_path do %>
+				<%= image_tag "Naganologo.jpg", class: "logo" %>
+			<% end %>
 			<nav>
-				<ul class="nav navbar-nav">
+				<ul class="nav">
 					<% if customer_signed_in? %>
-						<li>ようこそ、xxxさん</li>
-						<li><%= link_to "マイページ", customer_path %></li>
-						<li><%= link_to "商品一覧", items_path %></li>
-						<li><%= link_to "カート", cart_items_path %></li>
-						<li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
+						<li class="mr-3vw">ようこそ、<%= current_customer.last_name %><%= current_customer.first_name %>さん</li>
+						<li><%= link_to "マイページ", customer_path, class: "btn btn-outline-secondary mr-3vw" %></li>
+						<li><%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary mr-3vw" %></li>
+						<li><%= link_to "カート", cart_items_path, class: "btn btn-outline-secondary mr-3vw" %></li>
+						<li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary mr-3vw" %></li>
 				    <% else %>
-				    	<li><%= link_to "About" %></li>
-				    	<li><%= link_to "商品一覧", items_path %></li>
-				    	<li><%= link_to "新規登録", new_customer_registration_path %></li>
-				    	<li><%= link_to "ログイン", new_customer_session_path %></li>
+				    	<li><%= link_to "About", about_path, class: "btn btn-outline-secondary mr-3vw" %></li>
+				    	<li><%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary mr-3vw" %></li>
+				    	<li><%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-secondary mr-3vw" %></li>
+				    	<li><%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-secondary mr-3vw" %></li>
 					<% end %>
 				</ul>
 			</nav>
