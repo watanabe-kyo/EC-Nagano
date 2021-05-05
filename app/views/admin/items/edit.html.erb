@@ -4,7 +4,19 @@
 	<%= form_with model:@item, url: admin_item_path(@item), local: true do |f| %>
 	<div class="row">
 		<div class="col-md-3">
-			<%= f.attachment_field :image %>
+			<%= f.attachment_field :image %><br><br>
+			<img id="preview" style="width:40%;">
+
+			<script>
+			  $('#item_image').on('change', function (e) {
+			    var reader = new FileReader();
+			    reader.onload = function (e) {
+			        $("#preview").attr('src', e.target.result);
+			    }
+			    reader.readAsDataURL(e.target.files[0]);
+			});
+			</script>
+
 		</div>
 
 		<div class="col-md-7">
