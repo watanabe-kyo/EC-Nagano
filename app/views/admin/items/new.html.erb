@@ -9,14 +9,15 @@
 	</div>
 	<div class="col-md-4">
 		<%= f.label :name, "商品名" %>
-		<%= f.text_field :name %>
+		<%= f.text_field :name %><br>
 		<%= f.label :introduction, "商品説明" %>
-		<%= f.text_area :introduction %>
+		<%= f.text_area :introduction %><br>
 		<%= f.label :genre_id, "ジャンル" %>
-		<%= f.collection_select(:genre_id, @genres, :id, :name) %>
+		<%= f.collection_select(:genre_id, @genres, :id, :name) %><br>
 		<%= f.label :price, "税抜価格" %>
-		<%= f.number_field :price %>円
+		<%= f.number_field :price %>円<br>
 		<%= f.label :is_active, "販売ステータス" %>
+		<%= f.select :is_active, [['販売中', true], ['売切れ', false]] %><br>
 	</div>
 </div>
 <div class="row">
