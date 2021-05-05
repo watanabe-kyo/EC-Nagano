@@ -37,11 +37,11 @@
 		</div>
 		<div class="field">
 			<%= f.label :password, "パスワード（6文字以上）" %><br />
-			<%= f.text_field :password %>
+			<%= f.password_field :password %>
 		</div>
 		<div class="field">
 			<%= f.label :encrypted_password, "パスワード（確認用）" %><br />
-			<%= f.text_field :encrypted_password %>
+			<%= f.password_field :encrypted_password %>
 		</div>
 		<%= f.submit "新規登録" %>
 	<% end %>
