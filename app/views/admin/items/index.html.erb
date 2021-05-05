@@ -18,7 +18,7 @@
 				<% genre = Genre.find(item.genre_id) %>
 				<td><%= genre.name %></td>
 				<td>
-					<% if genre.is_active == true %>
+					<% if item.is_active == true %>
 						<p>有効</p>
 					<% else %>
 						<p>無効</p>

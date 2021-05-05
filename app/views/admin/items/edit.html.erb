@@ -22,7 +22,7 @@
 					<td>税抜価格</td>  <td><%= f.number_field :price %></td>
 				</tr>
 				<tr>
-					<td>販売ステータス</td>  <td><%= f.select :is_active, [['販売中', 0], ['売切れ', 1]] %></td>
+					<td>販売ステータス</td>  <td><%= f.select :is_active, [['販売中', true], ['売切れ', false]] %></td>
 				</tr>
 			</table>
 		</div>
