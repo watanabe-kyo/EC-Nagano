@@ -53,7 +53,7 @@
 					<tr>
 						<td><%= orderdetail.item.name %></td>
 						<td><%= orderdetail.price.to_s(:delimited) %>円</td>
-						<td><%= orderdetail.amount.to_s(:delimited) %>円</td>
+						<td><%= orderdetail.amount.to_s(:delimited) %>個</td>
 						<td><%= (orderdetail.price * orderdetail.amount).to_s(:delimited) %>円</td>
 					</tr>
 				<% end %>

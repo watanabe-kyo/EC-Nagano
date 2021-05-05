@@ -1,12 +1,16 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+<<<<<<< HEAD
 ruby '2.6.3'
+=======
+ruby '2.6.6'
+>>>>>>> a59a2228074d0cc1a722e36a601b774ae08c36c5
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.4'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -39,6 +43,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'sqlite3'
 end
 
 group :development do
@@ -68,3 +73,12 @@ gem 'jquery-rails'
 
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+<<<<<<< HEAD
+=======
+
+
+
+group :production do
+  gem 'pg'
+end
+>>>>>>> a59a2228074d0cc1a722e36a601b774ae08c36c5
