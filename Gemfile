@@ -1,11 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-<<<<<<< HEAD
-ruby '2.6.3'
-=======
 ruby '2.6.6'
->>>>>>> a59a2228074d0cc1a722e36a601b774ae08c36c5
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.4'
@@ -73,12 +69,9 @@ gem 'jquery-rails'
 
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
-<<<<<<< HEAD
-=======
-
 
 
 group :production do
   gem 'pg'
 end
->>>>>>> a59a2228074d0cc1a722e36a601b774ae08c36c5
+

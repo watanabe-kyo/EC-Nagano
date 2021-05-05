@@ -128,23 +128,15 @@ GEM
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2021.0225)
-<<<<<<< HEAD
-    mimemagic (0.3.10)
-      nokogiri (~> 1)
-      rake
-=======
->>>>>>> a59a2228074d0cc1a722e36a601b774ae08c36c5
     mini_magick (4.11.0)
     mini_mime (1.1.0)
-    mini_portile2 (2.5.1)
     minitest (5.14.4)
     msgpack (1.4.2)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     netrc (0.11.0)
     nio4r (2.5.7)
-    nokogiri (1.11.3)
-      mini_portile2 (~> 2.5.0)
+    nokogiri (1.11.3-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.2.3)
@@ -266,7 +258,7 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
-  ruby
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap (>= 1.1.0)
@@ -295,14 +287,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-<<<<<<< HEAD
-   ruby 2.6.3p62
-
-BUNDLED WITH
-   2.2.16
-=======
    ruby 2.6.6p146
 
 BUNDLED WITH
-   1.17.2
->>>>>>> a59a2228074d0cc1a722e36a601b774ae08c36c5
+   2.2.16
