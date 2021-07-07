@@ -14,50 +14,57 @@
  *= require_self
  */
 
- @import "bootstrap";
+@import "bootstrap";
 
- .logo {
- 	width: 8vw;
- 	height: 10vh;
- }
+.logo {
+  width: 8vw;
+  height: 10vh;
+}
 
- .top-image {
- 	background: image-url('top-image.jpg');
- 	height: 50vh;
- 	width: 50vw;
- }
+.top-image {
+  background: image-url("top-image.jpg");
+  height: 50vh;
+  width: 50vw;
+}
 
- .w-60p {
- 	width: 60%;
- }
+.w-60p {
+  width: 60%;
+}
 
- .pd-15p {
- 	padding-top: 10%;
- 	padding-bottom: 10%;
- }
+.pd-15p {
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
 
- .pd-5p {
- 	padding-top: 5%;
- 	padding-bottom: 5%;
- }
+.pd-5p {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
 
- .mr-3v {
- 	margin-top: 3vh;
- 	margin-right: 3vw;
- }
+.mr-3v {
+  margin-top: 3vh;
+  margin-right: 3vw;
+}
 
- .item-images {
- 	margin-top: 2vh;
- 	width: 9vw;
- 	height: 10vh;
- }
+.item-images {
+  margin-top: 2vh;
+  width: 9vw;
+  height: 10vh;
+}
 
- .item-image {
- 	width: 20vw;
- 	height: 30vh;
- }
+.item-image {
+  width: 20vw;
+  height: 30vh;
+}
 
- .mr-3vw {
- 	margin-right: 3vw;
- }
+.mr-3vw {
+  margin-right: 3vw;
+}
 
+.m-auto {
+  margin: 0 auto;
+}
+
+.topbtn {
+  width: 20%;
+}

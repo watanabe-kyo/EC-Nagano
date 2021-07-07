@@ -1,7 +1,7 @@
 <%= render 'public/header' %>
 <div class="container">
-	<%= flash[:error] %>
 	<h2>注文情報入力</h2>
+	<p class="text-danger"><%= @error %></p>
 	<%= form_with model:@order, url: orders_confirm_path, local: true do |f| %>
 		<p><b>支払方法</b></p>
 		<div class="container">

@@ -31,14 +31,22 @@ class Public::CartItemsController < ApplicationController
 		@cartitem.customer_id = current_customer.id
 		cartitems = current_customer.cart_items
 
-		cartitems.each do |cartitem|
-			if cartitem.item_id == @cartitem.item_id # もし同じ商品があれば
-				new_amount = cartitem.amount + @cartitem.amount # 個数を足してnew_amountに入れる。
-				cartitem.update_attribute(:amount, new_amount) # :amountにnewamountを登録する。
-				@cartitem.delete # 新規追加用のnewは不要のため削除
-				redirect_to cart_items_path and return # ここで処理を終わらせている。
+		# cartitems.each do |cartitem|
+		# 	if cartitem.item_id == @cartitem.item_id # もし同じ商品があれば
+		# 		new_amount = cartitem.amount + @cartitem.amount # 個数を足してnew_amountに入れる。
+		# 		cartitem.update_attribute(:amount, new_amount) # :amountにnewamountを登録する。
+		# 		@cartitem.delete # 新規追加用のnewは不要のため削除
+		# 		redirect_to cart_items_path and return # ここで処理を終わらせている。
 
-			end
+		# 	end
+		# end
+		if cartitems.where(item_id: @cartitem.item_id).exists?
+			cartitem = CartItem.find_by(item_id: @cartitem.item_id)
+			new_amount = cartitem.amount + @cartitem.amount
+			cartitem.update_attribute(:amount, new_amount)
+			@cartitem.delete
+			redirect_to cart_items_path
+			return
 		end
 		@cartitem.save
 		redirect_to cart_items_path

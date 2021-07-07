@@ -18,7 +18,12 @@ class Public::OrdersController < ApplicationController
 		end
 		@order.total_payment += @order.shipping_cost
 
-		if params[:order][:address_option] == "0"
+		if params[:order][:address_option] == nil
+			@order = Order.new
+			@addresses = current_customer.addresses
+			@error = "お届け先を選択してください。"
+			render :new
+		elsif params[:order][:address_option] == "0"
 			@order.postal_code = current_customer.postal_code
 			@order.address = current_customer.address
 			@order.name = current_customer.last_name + current_customer.first_name
@@ -28,6 +33,13 @@ class Public::OrdersController < ApplicationController
 			@order.address = address.address
 			@order.name = address.name
 		elsif params[:order][:address_option] =="2"
+
+			if params[:order][:postal_code] == "" || params[:order][:address] == "" || params[:order][:name] == ""
+				@order = Order.new
+				@addresses = current_customer.addresses
+				@error = "入力漏れがあります。"
+				render :new
+			end
 			@order.postal_code = params[:order][:postal_code]
 			@order.address = params[:order][:address]
 			@order.name = params[:order][:name]
@@ -50,21 +62,9 @@ class Public::OrdersController < ApplicationController
 		@order.address = params[:order][:address]
 		@order.name = params[:order][:name]
 
-		p "aaaa"
-		p @order
-		p "aaaa"
-
-		# @order.shipping_cost = @order.shipping_cost.to_i
-		# @order.total_payment = @order.total_payment.to_i
-		# @order.payment_method = @order.payment_method.to_i
-
-		# p "aaaa"
-		# p @order
-		# p "aaaa"
-
 		unless @order.save
 			@addresses = current_customer.addresses
-			flash[:error] = '注文失敗！'
+			@error = 'エラーが発生しました。お手数ですが再度注文を行ってください。'
 			render :new and return
 		end
 
@@ -75,7 +75,12 @@ class Public::OrdersController < ApplicationController
 			orderdetail.item_id = cartitem.item_id
 			orderdetail.price = cartitem.item.price
 			orderdetail.amount = cartitem.amount
-			orderdetail.save
+			unless orderdetail.save
+				@error = "エラーが発生しました。お手数ですが再度注文をお願い致します。"
+				@order.order_details.destroy_all
+				@order.destroy
+				render :new and return
+			end
 		end
 		@cartitems.destroy_all
 		redirect_to orders_thanks_path
